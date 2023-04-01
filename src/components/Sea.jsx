@@ -20,7 +20,7 @@ function Ocean() {
       sunDirection: new THREE.Vector3(),
       sunColor: 0xffffff,
       waterColor: "clear",
-      distortionScale: 3.7,
+      distortionScale: 2.0,
       fog: false,
       format: gl.encoding,
       
@@ -42,7 +42,7 @@ export default function Sea() {
         <Ocean />
         {/* <Box /> */}
       </Suspense>
-      <Sky scale={1000} sunPosition={[500, 150, -1000]} turbidity={0.0001} />
+      <Sky scale={1000}  sunPosition={[500, 150, -1000]} turbidity={0.0001} />
     </>
     
   )

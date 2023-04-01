@@ -9,12 +9,12 @@ body,
     background: ivory;
 }
 
-.letter, .puzzle, .game-over, .lives, .game-won {
+.letter, .puzzle, .game-over, .lives, .game-won, .guess, .wrong {
   font-family: "Londrina Outline";
   text-align: center;
  
 }
-.letter,  .game-over,  .game-won {
+.letter,  .game-over,  .game-won, .guess, .wrong {
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 .puzzle {
@@ -35,7 +35,7 @@ body,
 .letter:hover {
   color: orange;
 }
-.game-over {
+.game-over, .wrong {
   font-size: 8rem;
   color: red;
 }
@@ -52,4 +52,10 @@ body,
 
 .overlay {
   pointer-events: none
+}
+.guess {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: yellow;
+  font-size: 3rem;
 }

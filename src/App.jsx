@@ -1,26 +1,40 @@
-import { OrbitControls } from '@react-three/drei'
-import MyAnimatedBox from "./components/MyAnimatedBox.jsx"
-import  Sea  from "./components/Sea.jsx"
-import Balloon from './components/Ballon.jsx'
-import Clouds from './components/Clouds.jsx'
-import Shark from './components/Shark.jsx'
-// import { Perf } from 'r3f-perf'
+import {StrictMode, useState} from 'react'
+import ReactDOM from 'react-dom/client'
+import Experience from './Experience'
+import './index.css'
+import { Canvas, useThree } from '@react-three/fiber'
+import Overlay from './components/Overlay'
 
-export default function App() {    
-    return <>
-        <OrbitControls makeDefault />
-        {/* <Perf /> */}
-        <directionalLight position={ [ 1, 2, 3 ] } intensity={ 1.5 } />
-        <ambientLight intensity={ 0.5 } />
-        <Clouds />
-        {/* <MyAnimatedBox /> */}
-        <Shark />
-        <Balloon />
-        {/* <mesh position={[0,-20,0]}  scale={[150, 10, 150]} >
-            <boxGeometry/>
-            <meshLambertMaterial transparent opacity={0.5} color="#a1f2d9" />
-        </mesh> */}
-        
-        <Sea />
-    </>
+
+
+export default function App(props) {
+
+    const [balloons, setBalloons] = useState(3)
+    function loseBalloon() {
+        setBalloons(balloons - 1)
+    }
+
+    return (
+        <div>
+            <Canvas
+                camera={ {
+                    fov: 45,
+                    near: 0.1,
+                    far: 200,
+                    position: [ 0,0, 100 ]
+                    
+                } }  
+                style={{position: 'fixed', top:0, right: 0, height: "100%", width:"100%"}}
+
+            >
+            <Experience 
+                balloons={balloons} 
+            />  
+            </Canvas>
+            <Overlay 
+                className="overlay"
+                loseBalloon={loseBalloon}
+            /> 
+        </div>
+    )
 }

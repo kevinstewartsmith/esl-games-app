@@ -46,6 +46,12 @@ export default function MyAnimatedBox() {
         loop: true
 
     })
+    //Move box back and forth
+    // useFrame(() => {
+    //     myMesh.current.position.x = Math.sin(Date.now() / 1000) * 5
+    //     myMesh.current.position.y = Math.sin(Date.now() / 1000) * 5
+    //     myMesh.current.position.z = Math.sin(Date.now() / 1000) * 5
+    // })
    
   return (
 
