@@ -2,26 +2,28 @@ import { useState, useRef, useEffect } from 'react'
 import { useSpring, animated, config } from '@react-spring/three'
 import {  Sphere, Line } from '@react-three/drei'
 import Balloon from './Balloon.jsx';
+import Man from './Man.jsx';
 
 export default function BalloonBouquet(props) {
-    let balloon = props.balloons
-    
+    const [balloon, setBalloon] = useState(props.balloons)
+    const [balloonHeight, setBallonHeight] = useState(35)
     console.log("balloon bouqet: " + balloon);
     // If balloon is decreases, move one balloon above the viewport
 
+    //Balloon height decreases by 10 if props.balloons decreases
+    useEffect(() => {
+        if (balloon > props.balloons) {
+            setBalloon(balloon - 1)
+            setBallonHeight(balloonHeight - 15)
+        }
+    }, [balloon, props.balloons, balloonHeight])
+
     const myMesh = useRef();
     const [active, setActive] = useState(1)
-
-    let startFinishBalloonPath = [0, 18, 0];
-
-    function generateSharkPath() {
-        console.log("Animation restart.");
-        startFinishBalloonPath = [0, 18, 0 + (Math.random() * 10 ) - 5]
-    }
     let getRandomBalloonPath = [0,0,0]
 
     function generateRandomBalloonPath() {
-        getRandomBalloonPath = [Math.random() * 10 - 5, 18, Math.random() * 60 - 40 ]
+        getRandomBalloonPath = [Math.random() * 10 - 5, balloonHeight, Math.random() * 60 - 40 ]
     }
     //function getSharkPath() {return startFinishBalloonPath}
     const { spring, position, rotation } = useSpring({ 
@@ -36,12 +38,12 @@ export default function BalloonBouquet(props) {
                     generateRandomBalloonPath()
                     await next({ position: getRandomBalloonPath })
                 }
-              await next({ position: [0,18, 0] })
+              await next({ position: [0,balloonHeight, 0] })
               
             }
         },
         from: {
-            position: [0, 18, 0],
+            position: [0, balloonHeight, 0],
             rotation: 0      
         },
         loop: true
@@ -56,6 +58,7 @@ export default function BalloonBouquet(props) {
     //Const that is balloon with value 3
     const balloon3 = useRef()
     const balloons = [balloon1, balloon2, balloon3]
+    //ref for man
 
 
     return (
@@ -85,7 +88,8 @@ export default function BalloonBouquet(props) {
                 rotationZ={-Math.PI/11}
                 positionArray={[3,0,-3]}
                 balloons={props.balloons}
-            />     
+            />  
+             <Man  />   
         </animated.group>
     )
 }

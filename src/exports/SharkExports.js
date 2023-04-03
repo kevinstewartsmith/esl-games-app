@@ -4,8 +4,6 @@ export function generate() {
     console.log("Exports imported");
 }
 
-//let prevPos = [-30,-20,0]
-let prevPos = [0,0,0]
 let currentPos = [90,-20, 0]
 let rotation = 0 
 let position = {}
@@ -14,9 +12,6 @@ let position = {}
 export function generateRandomSharkPath2() {
     let randomX = 0
     let zPosition = 0
-    //const zDiff = currentPos[2] - prevPos[2]
-    //const xDiff = currentPos[0] - prevPos[0]
-    //let angleBase = 0
     let quad = ""
     const randAngle = (Math.PI/2 * Math.random() * 0.66)
     //Quad IV
@@ -51,11 +46,7 @@ export function generateRandomSharkPath2() {
         quad = "quad 1"
     }
 
-    //angle = Math.atan(currentPos[2] - prevPos[2] / currentPos[0] - prevPos[0])
-    
 
-    //prevPos = currentPos
-    //currentPos = [Math.random() * 60 - 30, -20, Math.random() * 60 - 100 ]
     currentPos = [randomX, -20, zPosition]
     position = {
         rotation: rotation,

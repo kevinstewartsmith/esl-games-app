@@ -25,8 +25,7 @@ export default function Shark() {
       nextX = nextSharkPath.randomX,
       nextZ = nextSharkPath.zPosition
       nextRotation = nextSharkPath.rotation
-      console.log(nextSharkPath);
-      
+      console.log(nextSharkPath)
     }
 
     
@@ -35,9 +34,6 @@ export default function Shark() {
         config: { mass: 5, tension: 30, friction: 20, precision: 0.1 }, 
         to: async (next) => {
             if (active === 1) {
-              
-              //await next(console.log(getPosition))
-                
               for (let i = 0; i < 4; i++) {
                 await next( nextSharkPath() )
                 //await next({ rotation:  nextRotation })
@@ -45,11 +41,6 @@ export default function Shark() {
                   rotation:  nextRotation,
                   position: [nextX, -20, nextZ] })  
               }
-              // await next({ 
-              //   position: [0,-20, 0],
-              //   rotation: 0
-              // })
-              //await next({rotation: Math.PI })
               
             }
           },
@@ -63,18 +54,7 @@ export default function Shark() {
 
     })
 
-// The shark will move in a random direction, but always point its nose in the direction of the next position based on inverse tangent.
-function getRotation() {
-  let rotation = Math.atan2(nextX, nextZ)
-  return rotation
-}
 
-//Shark travels in random oval path. Shark always points nose in direction of next position.
-  // useFrame(() => {
-  //   if (myMesh.current) {
-  //     myMesh.current.rotation.y = getRotation()
-  //   }
-  // })
 //Animation of shark bending 45 degrees to the left or right.
 //If the shark is moving in the positive x direction, it will bend to the left. If the shark is moving in the negative x direction, it will bend to the left.
 //The sharks bends back to Z 0 when it reaches the end of its path.
@@ -97,7 +77,7 @@ function getRotation() {
 //Cut the shark into two halves along the y axis and separate the two halves by 5 units.
   useFrame(() => {
     if (myMesh.current) {
-      myMesh.current.scale.set(5,2.5,5)
+      myMesh.current.scale.set(5,5,5)
     }
   })
 

@@ -54,10 +54,8 @@ export default function Overlay(props) {
     function loseALife() { 
         triggerLoseBalloon()
         setLives(lives - 1)
-        //console.log("Lives: " + lives)
-        setWrong(true)
-       
-        
+        console.log("Lives: " + lives)
+        if (lives > 1) { setWrong(true) }
     }
 
     useEffect(() => {
@@ -68,6 +66,7 @@ export default function Overlay(props) {
 
      //If lives decrease, set wrong to true but set it back to false after 1 second
     useEffect(() => {
+       
         if (wrong) {
             setTimeout(() => {
 
@@ -75,11 +74,9 @@ export default function Overlay(props) {
 
             }, 1000);
         }
-    }, [wrong])
+    }, [wrong, lives])
 
     function loadAlphabet() {
-        //const alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
-        
         let letters = []
         for (const letter in alphabet) {
             letters.push(
